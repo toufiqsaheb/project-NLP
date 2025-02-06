@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Sentiment Analysis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1DA1F2, #0d6efd, #ffcc00);
+            color: white;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .twitter-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://upload.wikimedia.org/wikipedia/en/6/60/Twitter_Logo_as_of_2021.svg');
+            background-size: 100px;
+            background-repeat: repeat;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="twitter-bg"></div>
+    <div class="container">
+        <h2><i class="fab fa-twitter"></i> Twitter Sentiment Analysis</h2>
+        <p>Analyze the sentiment of a tweet instantly</p>
+        <input type="text" id="tweetInput" class="form-control" placeholder="Enter a tweet...">
+        <button class="btn btn-warning mt-3" onclick="analyzeSentiment()">Analyze</button>
+        <h4 class="mt-4" id="result"></h4>
+    </div>
+    <script>
+        function analyzeSentiment() {
+            let tweet = document.getElementById("tweetInput").value;
+            let resultBox = document.getElementById("result");
+            
+            if (!tweet.trim()) {
+                resultBox.innerHTML = "Please enter a tweet!";
+                return;
+            }
+            
+            let sentiment = "Neutral";
+            if (tweet.includes("happy") || tweet.includes("good") || tweet.includes("great")) {
+                sentiment = "Positive 😊";
+            } else if (tweet.includes("sad") || tweet.includes("bad") || tweet.includes("angry")) {
+                sentiment = "Negative 😞";
+            }
+            
+            resultBox.innerHTML = `Sentiment: <strong>${sentiment}</strong>`;
+        }
+    </script>
+</body>
+</html>
